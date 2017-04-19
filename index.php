@@ -15,17 +15,7 @@ and open the template in the editor.
         echo "<br>";
         echo "Oppgave 1";
         echo "<br>";
-        include_once'ovelse.php';
-        include_once'utover.php';
-        include_once'publikum.php';
-        $ovelse=new ovelse("bjorn", "mann", "09.04");
-        $ovelse->skrivUt();
-        $utover=new Utover("bjorn", "mann", "norge");
-        $utover->skrivUt();
-        $publikum=new Publikum("bjorn", "oslo", "norge");
-        $publikum->skrivUt();
-        
         ?>
-        <a href="regPublikum.php">Registrering av publikum</a>
+        <a href="ovelser.php">Øvelser</a>
     </body>
 </html>
