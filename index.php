@@ -17,5 +17,9 @@ and open the template in the editor.
         echo "<br>";
         ?>
         <a href="ovelser.php">Øvelser</a>
+        <br>
+        <a href="publikum.php">Publikum</a>
+        <br>
+        <a href="utovere.php">Utøvere</a>
     </body>
 </html>

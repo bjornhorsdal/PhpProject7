@@ -14,3 +14,14 @@
                  <tr>
                     <td><input type="submit" value="Registrer" name="registrer"/></td>
                 </tr>
+
+<?php
+if(isset($_REQUEST['Registrer']))
+{
+	echo "<table>";
+	echo "<tr><td>Navn:</td><td>".$_REQUEST['navn']."<td></tr>";
+	echo "<tr><td>Bosted:</td><td>".$_REQUEST['bosted']."</td></tr>";
+	echo "<tr><td>Nationalitet:</td><td>".$_REQUEST['nationalitet']."</td></tr>";
+	echo "</table>";
+}
+?>                               

@@ -24,4 +24,8 @@ foreach($ovelser as $ovelse){
             $ovelse->skrivUtOverskrift();
             echo "</a><br>";
         }    
-        
+
+?>        
+
+<a href="regOvelse.php">Registrer ny øvelse</a>
+<br>
