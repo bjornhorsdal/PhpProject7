@@ -1,21 +1,49 @@
 <?php
-echo "Øvelse";
+
 include_once "class_ovelse.php";
 echo "<br>";
 echo "<br>";
+$db=new mysqli('localhost', 'root', '', 'ski');
+
+if(isset($_REQUEST['Registrer']))
+{
+	
+	$navn = $_REQUEST['navn'];
+	$kjonn = $_REQUEST['kjonn'];
+	$tidspunkt = $_REQUEST['tidspunkt'];
+        $sql = "INSERT INTO ovelse(OvelseNavn, OvelseKjonn, OvelseTidspunkt)
+           VALUES('$navn', '$kjonn', '$tidspunkt')";
+       echo "<br>";
+       $res = $db->query($sql);
+            if (!$res) {
+           echo '<p> Feil ved lagring </p>';
+    }
+    else {
+        $antall_rader = $db->affected_rows;
+        if ($antall_rader ==0){
+            echo '<p>Feil ved lagring!</p>';
+        }
+    }
+	
+}
+
 $ovelser = array();
             
-$ovelse = new Ovelse(1,"50 km klassisk", "kvinner", "11.00");
-$ovelser[]=$ovelse;
-
-$ovelse = new Ovelse(2,"50 km klassisk", "menn", "15.00");
-$ovelser[]=$ovelse;
-
-$ovelse = new Ovelse(3, "10 km klassisk", "kvinner", "17.00");
-$ovelser[]=$ovelse;
-
-$ovelse = new Ovelse(4, "10 km klassisk", "menn", "19.00");
-$ovelser[]=$ovelse;
+$sql = 'SELECT * FROM ovelse;';
+$res = $db->query($sql);
+        if(!$res){
+            echo '<p>Fant ingen øvelse!</p>';
+        }
+        else{
+            $antall_rader = $db->affected_rows;
+            for ($i=0; $i < $antall_rader; $i++){
+                $rad = $res->fetch_object();
+                $ovelse= new ovelse($rad->OvelseId, $rad->OvelseNavn, $rad->OvelseKjonn, $rad->OvelseTidspunkt);
+                $ovelser[]=$ovelse;
+                               
+            }   
+        }
+        
                                
 foreach($ovelser as $ovelse){
     //<a href="ovelser.php">Øvelser</a>

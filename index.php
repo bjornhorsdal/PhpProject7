@@ -18,7 +18,7 @@ and open the template in the editor.
         ?>
         <a href="ovelser.php">Øvelser</a>
         <br>
-        <a href="publikum.php">Publikum</a>
+        <a href="tilskuere.php">Tilskuere</a>
         <br>
         <a href="utovere.php">Utøvere</a>
     </body>
