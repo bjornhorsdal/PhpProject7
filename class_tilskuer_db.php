@@ -24,14 +24,14 @@ class tilskuer_db{
     }
     
     public function hentTilskuer($id){
-        $sql = 'SELECT * FROM tilskuer WHERE TilskuerId='.$_REQUEST["id"].";";
+        $sql = 'SELECT * FROM tilskuer WHERE TilskuerId='.$id.";";
         $res = $this->db->query($sql);
         if(!$res){
             echo '<p>Fant ingen tilskuer!</p>';
         }
         else{
             $rad = $res->fetch_object();
-            $tilskuer= new tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, $rad->TilskuerNationalitet);
+            $tilskuer= new Tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, $rad->TilskuerNationalitet);
         }
         return $tilskuer;
     }

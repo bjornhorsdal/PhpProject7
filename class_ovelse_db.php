@@ -1,5 +1,8 @@
 <?php
 include_once 'class_ovelse.php';
+include_once 'class_ovelse_db.php';
+include_once 'class_tilskuer_db.php';
+
 class ovelse_db{
     public $db;
     public function __construct($db) {
@@ -28,7 +31,7 @@ class ovelse_db{
         $sql = 'SELECT * FROM ovelse WHERE OvelseId='.$id.";";
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen øvelse!</p>';
+          echo "<p>Fant ingen øvelse!</p>";
         }
         else{
             $antall_rader = $this->db->affected_rows;
@@ -51,6 +54,28 @@ class ovelse_db{
                 echo '<p>Feil ved lagring!</p>';
             }
         }
+    }
+     public function hentOvelseTilskuere($id) {
+        $sql = 'SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseID='.$id.";";
+        $res = $this->db->query($sql);
+        $tilskuere = array();
+        if(!$res){
+            echo '<p>Fant ingen øvelse/tilskuer!</p>';
+        }
+        else{
+            $tilskuerDb=new tilskuer_db($this->db);
+            $antall_rader = $this->db->affected_rows;
+            for($i=0; $i<$antall_rader; $i++){
+                $rad = $res->fetch_object();
+                $tilskuer=$tilskuerDb->hentTilskuer($rad->TilskuerId); 
+                print_r($tilskuer);
+                echo "<br>";
+                $tilskuere[]=$tilskuer;
+                }
+                
+        }
+        
+        return $tilskuere;
     }
 }
 
