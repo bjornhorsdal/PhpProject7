@@ -23,7 +23,9 @@ foreach($utovere as $utover){
             echo "?id=". $utover->id. "'>";
             $utover->skrivUtOverskrift();
             echo "</a><br>";
-        }    
+        }   
+
+         
 ?>
 
 <a href="regUtover.php">Registrer utøver</a>

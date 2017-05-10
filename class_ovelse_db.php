@@ -88,7 +88,6 @@ class ovelse_db{
             for($i=0; $i<$antall_rader; $i++){
                 $rad = $res->fetch_object();
                 $utover=$utoverDb->hentUtover($rad->UtoverId); 
-                echo "<br>";
                 $utovere[]=$utover;
             }
         }

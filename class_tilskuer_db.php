@@ -1,5 +1,6 @@
 <?php
 include_once 'class_tilskuer.php';
+include_once 'class_ovelse_db.php';
 class tilskuer_db{
     public $db;
     public function __construct($db) {
@@ -49,6 +50,24 @@ class tilskuer_db{
                 echo '<p>Feil ved lagring!</p>';
             }
         }
+    }
+    public function hentTilskuerSineOvelser($id){
+        $sql = 'SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerID='.$id.";";
+        $res = $this->db->query($sql);
+        $ovelser = array();
+        if(!$res){
+            echo '<p>Fant ingen øvelse på denne tilskuer!</p>';
+        }
+        else{
+            $ovelseDb=new ovelse_db($this->db);
+            $antall_rader = $this->db->affected_rows;
+            for($i=0; $i<$antall_rader; $i++){
+                $rad = $res->fetch_object();
+                $ovelse=$ovelseDb->hentOvelse($rad->OvelseId); 
+                $ovelser[]=$ovelse;
+            }
+        }
+        return $ovelser;
     }
 }
 
