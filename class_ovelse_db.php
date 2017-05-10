@@ -2,6 +2,7 @@
 include_once 'class_ovelse.php';
 include_once 'class_ovelse_db.php';
 include_once 'class_tilskuer_db.php';
+include_once 'class_utover_db.php';
 
 class ovelse_db{
     public $db;
@@ -55,7 +56,7 @@ class ovelse_db{
             }
         }
     }
-     public function hentOvelseTilskuere($id) {
+    public function hentOvelseTilskuere($id) {
         $sql = 'SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseID='.$id.";";
         $res = $this->db->query($sql);
         $tilskuere = array();
@@ -68,14 +69,30 @@ class ovelse_db{
             for($i=0; $i<$antall_rader; $i++){
                 $rad = $res->fetch_object();
                 $tilskuer=$tilskuerDb->hentTilskuer($rad->TilskuerId); 
-                print_r($tilskuer);
                 echo "<br>";
                 $tilskuere[]=$tilskuer;
-                }
-                
+            }
         }
-        
         return $tilskuere;
+    }
+    public function hentOvelseUtovere($id) {
+        $sql = 'SELECT UtoverId  FROM `ovelseutover` WHERE OvelseID='.$id.";";
+        $res = $this->db->query($sql);
+        $utovere = array();
+        if(!$res){
+            echo '<p>Fant ingen øvelse/utøver!</p>';
+        }
+        else{
+            $utoverDb=new utover_db($this->db);
+            $antall_rader = $this->db->affected_rows;
+            for($i=0; $i<$antall_rader; $i++){
+                $rad = $res->fetch_object();
+                $utover=$utoverDb->hentUtover($rad->UtoverId); 
+                echo "<br>";
+                $utovere[]=$utover;
+            }
+        }
+        return $utovere;
     }
 }
 

@@ -19,8 +19,8 @@ UtoverKjonn varchar(10),
 UtoverNationalitet varchar (255), primary key(UtoverId)
 );
 
-CREATE TABLE OvelseTilskuer (
+CREATE TABLE OvelseUtover (
     OvelseID int NOT NULL,
-    TilskuerId int NOT NULL,
-    PRIMARY KEY (OvelseId, TilskuerID)    
+    UtoverId int NOT NULL,
+    PRIMARY KEY (OvelseId, UtoverID)    
 );
