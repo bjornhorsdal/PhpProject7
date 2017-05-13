@@ -69,5 +69,19 @@ class utover_db{
             }
         }
         return $ovelser;
-    }        
+    }  
+    public function lagreOvelse($UtoverId, $OvelseId){
+        $sql = "INSERT INTO `ovelseutover` (UtoverId, OvelseId)
+           VALUES('$UtoverId', '$OvelseId');";
+        $res = $this->db->query($sql);
+        if(!$res){
+            echo '<p>Feil ved lagring!</p>';
+        }
+        else{
+            $antall_rader = $this->db->affected_rows;
+            if ($antall_rader==0){
+                echo "Feil ved lagring";
+            }
+        }
+    }
 }

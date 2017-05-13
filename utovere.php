@@ -1,9 +1,11 @@
 <?php
-echo "Utøvere";
+include_once 'meny.php';
+echo "<br>";
+echo "<h2>Utøvere</h2>";
+echo "<br>";
 include_once "class_utover.php";
 include_once "class_utover_db.php";
-echo "<br>";
-echo "<br>";
+
 $db=new mysqli('localhost', 'root', '', 'ski');
 $utoverDb=new utover_db($db);
 if(isset($_REQUEST['registrer']))
@@ -27,6 +29,6 @@ foreach($utovere as $utover){
 
          
 ?>
-
+<br>
 <a href="regUtover.php">Registrer utøver</a>
 <br>             

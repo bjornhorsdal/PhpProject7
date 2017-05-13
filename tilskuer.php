@@ -1,22 +1,20 @@
 <?php
-echo "Informasjon tilskuer  ". $_REQUEST["id"]. "<br>";
+include_once 'meny.php';
+echo "<h2>Informasjon tilskuer med id nummer ". $_REQUEST["id"]. "</h2>";
 
 include_once "class_tilskuer.php";
 include_once "class_tilskuer_db.php";
 include_once "liste.php";
 echo "<br>";
-echo "<br>";
+
 $db=new mysqli('localhost', 'root', '', 'ski');
 $tilskuerDb=new tilskuer_db($db);
 
 if(isset($_REQUEST['Registrer']))
 {
-	echo "sjekk";
-        echo "<br>";
-	$tilskuerId = 99; //$_REQUEST['navn'];
-	$ovelseId = 33; //$_REQUEST['kjonn'];
-	//$tilskuerDb->lagreOvelse($tilsuerId, $ovelseId);
-       
+    $tilskuerId = $_REQUEST['id'];
+    $ovelseId = $_REQUEST['OvelseId'];
+    $tilskuerDb->lagreOvelse($tilskuerId, $ovelseId);
 }
 
 $tilskuer=$tilskuerDb->hentTilskuer($_REQUEST["id"]);    
@@ -29,7 +27,8 @@ foreach ($ovelser as $ovelse){
     echo "<br>";
     }  
 
-echo "<br>";    
+echo "<br>"; 
+
 ?>
 
 <form action="tilskuer.php">

@@ -13,12 +13,12 @@ and open the template in the editor.
         <?php
         echo "<h2>Prosjektoppgave 2017 - Webprogrammering PHP</h2>";
         echo "<br>";
-        echo "Oppgave 1";
-        echo "<br>";
         ?>
         <a href="ovelser.php">Øvelser</a>
         <br>
+        <br>
         <a href="tilskuere.php">Tilskuere</a>
+        <br>
         <br>
         <a href="utovere.php">Utøvere</a>
     </body>

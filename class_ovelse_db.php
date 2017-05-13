@@ -57,7 +57,7 @@ class ovelse_db{
         }
     }
     public function hentOvelseTilskuere($id) {
-        $sql = 'SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseID='.$id.";";
+        $sql = 'SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseId='.$id.";";
         $res = $this->db->query($sql);
         $tilskuere = array();
         if(!$res){
@@ -69,14 +69,13 @@ class ovelse_db{
             for($i=0; $i<$antall_rader; $i++){
                 $rad = $res->fetch_object();
                 $tilskuer=$tilskuerDb->hentTilskuer($rad->TilskuerId); 
-                echo "<br>";
                 $tilskuere[]=$tilskuer;
             }
         }
         return $tilskuere;
     }
     public function hentOvelseUtovere($id) {
-        $sql = 'SELECT UtoverId  FROM `ovelseutover` WHERE OvelseID='.$id.";";
+        $sql = 'SELECT UtoverId  FROM `ovelseutover` WHERE OvelseId='.$id.";";
         $res = $this->db->query($sql);
         $utovere = array();
         if(!$res){
@@ -92,6 +91,21 @@ class ovelse_db{
             }
         }
         return $utovere;
+    }
+    public function endre($ovelse) {
+        $sql = "UPDATE ovelse SET OvelseNavn='$ovelse->navn', OvelseKjonn='$ovelse->kjonn', OvelseTidspunkt='$ovelse->tidspunkt' WHERE OvelseId='$ovelse->id';";
+        echo "$sql";
+        echo "<br>";
+        $res = $this->db->query($sql);
+        if (!$res) {
+            echo '<p>Feil ved oppdatering!</p>';
+        }
+        else {
+            $antall_rader = $this->db->affected_rows;
+            if ($antall_rader ==0){
+                echo '<p>Feil ved oppdatering!</p>';
+            }
+        }
     }
 }
 

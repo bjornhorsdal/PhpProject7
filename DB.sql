@@ -20,7 +20,13 @@ UtoverNationalitet varchar (255), primary key(UtoverId)
 );
 
 CREATE TABLE OvelseUtover (
-    OvelseID int NOT NULL,
+    OvelseId int NOT NULL,
     UtoverId int NOT NULL,
-    PRIMARY KEY (OvelseId, UtoverID)    
+    PRIMARY KEY (OvelseId, UtoverId)    
+);
+
+CREATE TABLE OvelseTilskuer (
+    OvelseId int NOT NULL,
+    TilskuerId int NOT NULL,
+    PRIMARY KEY (OvelseId, TilskuerId)    
 );

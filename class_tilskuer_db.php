@@ -52,7 +52,7 @@ class tilskuer_db{
         }
     }
     public function hentTilskuerSineOvelser($id){
-        $sql = 'SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerID='.$id.";";
+        $sql = 'SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerId='.$id.";";
         $res = $this->db->query($sql);
         $ovelser = array();
         if(!$res){
@@ -68,6 +68,20 @@ class tilskuer_db{
             }
         }
         return $ovelser;
+    }
+    public function lagreOvelse($TilskuerId, $OvelseId){
+        $sql = "INSERT INTO `ovelsetilskuer` (TilskuerId, OvelseId)
+           VALUES('$TilskuerId', '$OvelseId');";
+        $res = $this->db->query($sql);
+        if(!$res){
+            echo '<p>Feil ved lagring1!</p>';
+        }
+        else{
+            $antall_rader = $this->db->affected_rows;
+            if ($antall_rader==0){
+                echo "Feil ved lagring";
+            }
+        }
     }
 }
 

@@ -15,15 +15,14 @@ Class Ovelse{
     }
 
     function skrivUt(){
-        echo "navn: ".$this->navn. "<br>";
-        echo "kjonn: ".$this->kjonn. "<br>";
-        echo "tidspunkt: ".$this->tidspunkt. "<br>";
+        echo "Navn: ".$this->navn. "<br>";
+        echo "Kjønn: ".$this->kjonn. "<br>";
+        echo "Tidspunkt: ".$this->tidspunkt. "<br>";
     }
 
     function skrivUtOverskrift(){
         echo "$this->navn. $this->kjonn. <br>";
     }
-    
 }
         
 ?>        
