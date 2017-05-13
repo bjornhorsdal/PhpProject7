@@ -18,8 +18,6 @@ if(isset($_REQUEST['Registrer'])){
 }
 
 if(isset($_REQUEST['Endre'])){
-    echo "Sjekk";
-    echo "<br>";
     $id = $_REQUEST['id'];
     $navn = $_REQUEST['navn'];
     $kjonn = $_REQUEST['kjonn'];
@@ -37,8 +35,7 @@ foreach($ovelser as $ovelse){
             $ovelse->skrivUtOverskrift();
             echo "</a><br>";
         }    
-
-?>        
-<br>
-<a href="regOvelse.php">Registrer ny øvelse</a>
-<br>
+        
+if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){     
+    echo '<br><a href="regOvelse.php">Registrer ny øvelse</a><br>';
+}    

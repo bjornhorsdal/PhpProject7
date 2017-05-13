@@ -18,11 +18,10 @@ $ovelse->skrivUt();
 <form action="regOvelse.php" method="GET">
 <?php
 echo'<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
-?>
-<input type="submit" value="Endre" name="Endre"/>
-</form>
+if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){
+    echo '<input type="submit" value="Endre" name="Endre"/></form>';
+}
 
-<?php
 echo "<br>";
 echo "<h2>Tilskuere</h2>";
 $tilskuere = $ovelseDb->hentOvelseTilskuere($_REQUEST["id"]);
@@ -39,6 +38,3 @@ foreach ($utovere as $utover){
 }    
 echo "<br>";           
 ?>        
-
-<a href="regOvelse.php">Registrer ny øvelse</a>
-<br>

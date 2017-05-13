@@ -11,6 +11,18 @@ $db=new mysqli('localhost', 'root', '', 'ski');
 $utoverDb=new utover_db($db);
 $utover=$utoverDb->hentUtover($_REQUEST["id"]);
 $utover->skrivUt();
+?>
+
+<br>
+<form action="regUtover.php" method="GET">
+
+<?php
+echo'<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
+if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){
+    echo '<input type="submit" value="Endre" name="Endre"/></form>';
+}
+echo "</form><br>";
+
 
 if(isset($_REQUEST['Registrer']))
 {
@@ -19,14 +31,13 @@ if(isset($_REQUEST['Registrer']))
     $utoverDb->lagreOvelse($utoverId, $ovelseId);
 }
 
-echo "<h3>Øvelser utøver skal delta på:</h3>";
+echo "<h2>Øvelser utøver skal delta på:</h2>";
 $ovelser = $utoverDb->hentUtoverSineOvelser($_REQUEST["id"]);
 foreach ($ovelser as $ovelse){
     $ovelse->skrivUt();
-    echo "<br>";
-    } 
+} 
 echo "<br>";
-echo "<br>";
+
 ?>          
 
 <form action="utover.php">
@@ -37,8 +48,4 @@ echo lagListe();
 ?>
 <input type="submit" value="Registrer" name="Registrer"/>    
 </form>
-<br>
-<br>
 
-<a href="regUtover.php">Registrer ny utøver</a>
-<br>

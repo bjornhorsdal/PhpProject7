@@ -30,3 +30,8 @@ CREATE TABLE OvelseTilskuer (
     TilskuerId int NOT NULL,
     PRIMARY KEY (OvelseId, TilskuerId)    
 );
+
+CREATE TABLE Administrator (
+AdministratorNavn varchar (255),
+AdministratorPassordHash varchar(255), primary key(AdministratorNavn)
+);
