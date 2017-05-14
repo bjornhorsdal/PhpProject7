@@ -1,5 +1,8 @@
 <?php
+include_once 'meny.php';
+echo "<br>";
 include_once 'class_ovelse_db.php';
+
 if(isset($_REQUEST['Endre'])){
     $db=new mysqli('localhost', 'root', '', 'ski');
     $ovelseDb=new ovelse_db($db);

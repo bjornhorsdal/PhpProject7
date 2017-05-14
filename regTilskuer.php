@@ -1,3 +1,7 @@
+<?php
+include_once 'meny.php';
+echo "<br>";
+?>
 <h2>Registrering av tilskuer</h2>
         
 <form action="tilskuere.php" method="Get">

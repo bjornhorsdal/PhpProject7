@@ -1,5 +1,6 @@
 <?php
 include_once 'meny.php';
+echo "<br>";
 echo "<h2>Informasjon om utøver med id nummer ". $_REQUEST["id"]. "</h2>";
 echo "<br>";
 
@@ -35,17 +36,17 @@ echo "<h2>Øvelser utøver skal delta på:</h2>";
 $ovelser = $utoverDb->hentUtoverSineOvelser($_REQUEST["id"]);
 foreach ($ovelser as $ovelse){
     $ovelse->skrivUt();
+    echo "<br>";
 } 
 echo "<br>";
 
-?>          
-
-<form action="utover.php">
-    
-<?php
-echo '<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
-echo lagListe();
+if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){  
+    echo '<form action="utover.php">';
+    echo '<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
+    echo lagListe();
+    echo '<input type="submit" value="Registrer" name="Registrer"/></form>';    
+}    
 ?>
-<input type="submit" value="Registrer" name="Registrer"/>    
-</form>
+
+
 

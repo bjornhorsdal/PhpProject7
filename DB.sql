@@ -33,5 +33,7 @@ CREATE TABLE OvelseTilskuer (
 
 CREATE TABLE Administrator (
 AdministratorNavn varchar (255),
-AdministratorPassordHash varchar(255), primary key(AdministratorNavn)
+AdministratorEpost varchar (255),
+AdministratorBrukerNavn varchar (255) not null,
+AdministratorPassordHash varchar(255), primary key(AdministratorBrukerNavn)
 );

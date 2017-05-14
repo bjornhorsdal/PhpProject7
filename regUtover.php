@@ -1,4 +1,6 @@
 <?php
+include_once 'meny.php';
+echo "<br>";
 include_once 'class_utover_db.php';
 if(isset($_REQUEST['Endre'])){
     $db=new mysqli('localhost', 'root', '', 'ski');

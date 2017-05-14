@@ -1,5 +1,6 @@
 <?php
 include_once 'meny.php';
+echo "<br>";
 echo "<h2>Informasjon tilskuer med id nummer ". $_REQUEST["id"]. "</h2>";
 
 include_once "class_tilskuer.php";

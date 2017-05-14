@@ -86,8 +86,6 @@ class utover_db{
     }
     public function endre($utover) {
         $sql = "UPDATE utover SET UtoverNavn='$utover->navn', UtoverKjonn='$utover->kjonn', UtoverNationalitet='$utover->nationalitet' WHERE UtoverId='$utover->id';";
-        echo "$sql";
-        echo "<br>";
         $res = $this->db->query($sql);
         if (!$res) {
             echo '<p>Feil ved oppdatering!</p>';

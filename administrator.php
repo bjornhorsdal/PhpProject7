@@ -2,11 +2,13 @@
 function brukerErAdministrator($brukerNavn, $passord){
     $administrator= hentAdministrator($brukerNavn, $passord);
     if($administrator==""){
-        echo "Du er ikke administrator <br>";
+        echo "Du er ikke administrator!<br>";
         return FALSE;
     }
     else {
-        echo "Du er logget inn <br>";
+        echo "Du er logget inn!<br>";
+        echo "Du kan nå opprette og endre øvelser og utøver.<br><br>";
+        echo "Du kan også <a href='regAdministrator.php'> Registrere nye administratorkontoer</a>";
         return TRUE;
     }
 }
@@ -14,7 +16,7 @@ function brukerErAdministrator($brukerNavn, $passord){
 function hentAdministrator($brukerNavn, $passord) {
     $db=new mysqli('localhost', 'root', '', 'ski');
     $administrator="";    
-    $sql = "SELECT * FROM administrator WHERE AdministratorNavn='$brukerNavn' AND AdministratorPassordHash=PASSWORD('$passord');";
+    $sql = "SELECT * FROM administrator WHERE AdministratorBrukerNavn='$brukerNavn' AND AdministratorPassordHash=PASSWORD('$passord');";
     $res = $db->query($sql);
     if(!$res){
       echo "<p>Feil i login!</p>";
