@@ -1,3 +1,6 @@
+<html><head><title>Registrering av administrator</title><script src ="validering.js"></script></head>
+    <body
+
 <?php
 include_once 'meny.php';
 echo "<br>";
@@ -30,13 +33,11 @@ if(isset($_POST['registrer']))
     }
 }
 
-
-
 ?>
 
 <h2>Registrering av ny administrator</h2>
        
-<form action="regAdministrator.php" method="POST">
+<form action="regAdministrator.php" method="POST" onsubmit="return valider_administrator()">
     <table>
         <tr>
             <td>Navn</td><td><input type="text" name="navn"/></td>
@@ -45,10 +46,10 @@ if(isset($_POST['registrer']))
             <td>Epost</td><td><input type="text" name="epost"/></td>
         </tr>
         <tr>
-            <td>Brukernavn</td><td><input type="text" name="brukernavn"/></td>
+            <td>Brukernavn</td><td><input type="text" name="brukernavn" id="brukerNavn"/></td>
         </tr>
         <tr>
-            <td>Passord</td><td><input type="text" name="passord"/></td>
+            <td>Passord</td><td><input type="text" name="passord" id="passord"/></td>
         </tr>
         <tr>
             <td><input type="submit" value="Registrer" name="registrer"/></td>
@@ -56,13 +57,6 @@ if(isset($_POST['registrer']))
     </table>    
 </form>    
 
-
-
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 

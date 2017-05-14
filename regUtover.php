@@ -39,7 +39,9 @@ if(isset($_POST['Endre'])){
             <td><input type="submit" value="Registrer" name="registrer"/></td>
         </tr>
     </table>    
-</form>    
+</form>
+    </body>
+</html>
 
 
                 
