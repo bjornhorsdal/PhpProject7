@@ -3,6 +3,7 @@ include_once 'class_ovelse.php';
 include_once 'class_ovelse_db.php';
 include_once 'class_tilskuer_db.php';
 include_once 'class_utover_db.php';
+include_once 'feilbehandling.php';
 
 class ovelse_db{
     public $db;
@@ -15,7 +16,9 @@ class ovelse_db{
         $sql = 'SELECT * FROM ovelse;';
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen øvelse!</p>';
+            $feilmelding='Fant ingen øvelse!';
+            loggFeil($feilmelding);
+            echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
@@ -32,7 +35,9 @@ class ovelse_db{
         $sql = 'SELECT * FROM ovelse WHERE OvelseId='.$id.";";
         $res = $this->db->query($sql);
         if(!$res){
-          echo "<p>Fant ingen øvelse!</p>";
+          $feilmelding='Fant ingen øvelse!';
+          error_log($feilmelding, 3, "feilLogg.txt");
+            echo "$feilmelding<br>";
         }
         else{
             $antall_rader = $this->db->affected_rows;
@@ -47,12 +52,16 @@ class ovelse_db{
              VALUES('$ovelse->navn', '$ovelse->kjonn', '$ovelse->tidspunkt')";
         $res = $this->db->query($sql);
         if (!$res) {
-            echo '<p> Feil ved lagring </p>';
+            $feilmelding='Feil ved lagring';
+            error_log($feilmelding, 3, "feilLogg.txt");
+            echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader ==0){
-                echo '<p>Feil ved lagring!</p>';
+                $feilmedling='Feil ved lagring';
+                error_log($feilmelding, 3, "feilLogg.txt");
+                echo "$feilmelding<br>";
             }
         }
     }
@@ -61,7 +70,9 @@ class ovelse_db{
         $res = $this->db->query($sql);
         $tilskuere = array();
         if(!$res){
-            echo '<p>Fant ingen øvelse/tilskuer!</p>';
+            $feilmelding='Fant ingen øvelse';
+            error_log($feilmelding, 3, "feilLogg.txt");
+            echo "$feilmelding<br>";
         }
         else{
             $tilskuerDb=new tilskuer_db($this->db);
@@ -79,7 +90,9 @@ class ovelse_db{
         $res = $this->db->query($sql);
         $utovere = array();
         if(!$res){
-            echo '<p>Fant ingen øvelse/utøver!</p>';
+            $feilmelding='Fant ingen øvelse';
+            error_log($feilmelding, 3, "feilLogg.txt");
+            echo "$feilmelding<br>";
         }
         else{
             $utoverDb=new utover_db($this->db);
@@ -97,12 +110,16 @@ class ovelse_db{
                 . "OvelseTidspunkt='$ovelse->tidspunkt' WHERE OvelseId='$ovelse->id';";
         $res = $this->db->query($sql);
         if (!$res) {
-            echo '<p>Feil ved oppdatering!</p>';
+            $feilmelding='Feil ved oppdatering';
+            error_log($feilmelding, 3, "feilLogg.txt");
+            echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader ==0){
-                echo '<p>Feil ved oppdatering!</p>';
+                $feilmelding='Feil ved oppdatering';
+                error_log($feilmelding, 3, "feilLogg.txt");
+                echo "$feilmelding<br>";
             }
         }
     }

@@ -1,4 +1,6 @@
 <?php
+include_once 'feilbehandling.php';
+
 function brukerErAdministrator($brukerNavn, $passord){
     $administrator= hentAdministrator($brukerNavn, $passord);
     if($administrator==""){
@@ -19,8 +21,10 @@ function hentAdministrator($brukerNavn, $passord) {
     $sql = "SELECT * FROM administrator WHERE AdministratorBrukerNavn='$brukerNavn' ";
     $res = $db->query($sql);
     if(!$res){
-      echo "<p>Feil i login!</p>";
-      echo $db->error;
+      $feilmelding = "Feil i login! ";
+      $feilmelding .= $db->error;
+      loggFeil($feilmelding);
+      echo $feilmelding;
       echo "<br>";
     }
     else{
@@ -31,7 +35,10 @@ function hentAdministrator($brukerNavn, $passord) {
                 $administrator=$rad->AdministratorNavn;
             }
             else {
-                echo "Feil brukernavn eller passord!<br>";
+                $feilmelding = "Feil brukernavn eller passord!";
+                loggFeil($feilmelding);
+                echo "$feilmelding";
+                echo "<br>";
             }
         }
     }

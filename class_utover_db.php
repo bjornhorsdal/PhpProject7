@@ -1,17 +1,22 @@
 <?php
 include_once 'class_utover.php';
 include_once 'class_tilskuer_db.php';
+include_once 'feilbehandling.php';
+
 class utover_db{
     public $db;
     public function __construct($db) {
         $this->db=$db;
     }
+    
     public function hentAlle(){
         $utovere=array();
         $sql = 'SELECT * FROM utover;';
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen utøver!</p>';
+                $feilmelding='Fant ingen utøver!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else{
             $antall_rader = $this->db->affected_rows;
@@ -28,7 +33,9 @@ class utover_db{
         $sql = "SELECT * FROM utover WHERE UtoverId='$id';";
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen utøver!</p>';
+                $feilmelding='Fant ingen utøver!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else{
             $rad = $res->fetch_object();
@@ -42,12 +49,16 @@ class utover_db{
            VALUES('$utover->navn', '$utover->kjonn', '$utover->nationalitet')";
         $res = $this->db->query($sql);
         if (!$res){
-            echo '<p> Feil ved lagring </p>';
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader ==0){
-                echo '<p>Feil ved lagring!</p>';
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
             }
         }
     }
@@ -57,7 +68,9 @@ class utover_db{
         $res = $this->db->query($sql);
         $ovelser = array();
         if(!$res){
-            echo '<p>Fant ingen øvelse som denne utøver skal delta på!</p>';
+                $feilmelding='Fant ingen øvelse som denne utøver skal delta på!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else{
             $ovelseDb=new ovelse_db($this->db);
@@ -70,30 +83,40 @@ class utover_db{
         }
         return $ovelser;
     }  
+    
     public function lagreOvelse($UtoverId, $OvelseId){
         $sql = "INSERT INTO `ovelseutover` (UtoverId, OvelseId)
            VALUES('$UtoverId', '$OvelseId');";
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Feil ved lagring!</p>';
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding); 
+                echo "$feilmelding<br>";    
         }
         else{
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader==0){
-                echo "Feil ved lagring";
+                $feilmelding='Feil ved lagring!';
+                error_log($feilmelding, 3, "feilLogg.txt");
+                echo "$feilmelding<br>";
             }
         }
     }
+    
     public function endre($utover) {
         $sql = "UPDATE utover SET UtoverNavn='$utover->navn', UtoverKjonn='$utover->kjonn', UtoverNationalitet='$utover->nationalitet' WHERE UtoverId='$utover->id';";
         $res = $this->db->query($sql);
         if (!$res) {
-            echo '<p>Feil ved oppdatering!</p>';
+                $feilmelding='Feil ved oppdatering!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader ==0){
-                echo '<p>Feil ved oppdatering!</p>';
+                $feilmelding='Feil ved oppdatering!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
             }
         }
     }

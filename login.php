@@ -2,8 +2,9 @@
 session_start();
 include_once 'administrator.php';
 if(isset($_POST['login'])){
-    $brukernavn = $_POST['brukernavn'];
-    $passord = $_POST['passord'];
+    $db=new mysqli('localhost', 'root', '', 'ski');
+    $brukernavn = $db->real_escape_string($_POST['brukernavn']);
+    $passord = $db->real_escape_string($_POST['passord']);
     if(brukerErAdministrator($brukernavn, $passord)){
         $_SESSION["admin"]=true;
     }
@@ -24,7 +25,7 @@ include_once 'meny.php';
             <td>Brukernavn</td><td><input type="text" name="brukernavn"/></td>
         </tr>
         <tr>
-            <td>Passord</td><td><input type="text" name="passord"/></td>
+            <td>Passord</td><td><input type="password" name="passord"/></td>
         </tr>
         <tr>
             <td><input type="submit" value="Logg inn" name="login"/></td>

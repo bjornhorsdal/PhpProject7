@@ -49,7 +49,7 @@ if(isset($_POST['registrer']))
             <td>Brukernavn</td><td><input type="text" name="brukernavn" id="brukerNavn"/></td>
         </tr>
         <tr>
-            <td>Passord</td><td><input type="text" name="passord" id="passord"/></td>
+            <td>Passord</td><td><input type="password" name="passord" id="passord"/></td>
         </tr>
         <tr>
             <td><input type="submit" value="Registrer" name="registrer"/></td>

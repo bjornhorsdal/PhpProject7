@@ -1,17 +1,22 @@
 <?php
 include_once 'class_tilskuer.php';
 include_once 'class_ovelse_db.php';
+include_once 'feilbehandling.php';
+
 class tilskuer_db{
     public $db;
     public function __construct($db) {
         $this->db=$db;
     }
+    
     public function hentAlle(){
         $tilskuere=array();
         $sql = 'SELECT * FROM tilskuer;';
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen tilskuer!</p>';
+            $feilmelding='Fant ingen tilskuer!';
+            loggFeil($feilmelding);
+            echo "$feilmelding<br>";
         }
         else{
             $antall_rader = $this->db->affected_rows;
@@ -29,7 +34,9 @@ class tilskuer_db{
         $sql = "SELECT * FROM tilskuer WHERE TilskuerId='$id';";
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Fant ingen tilskuer!</p>';
+            $feilmelding='Fant ingen tilskuer!';
+            loggFeil($feilmelding);
+            echo "$feilmelding<br>";
         }
         else{
             $rad = $res->fetch_object();
@@ -45,21 +52,28 @@ class tilskuer_db{
                 . "'$tilskuer->epost','$tilskuer->nationalitet');";
         $res = $this->db->query($sql);
         if (!$res){
-           echo '<p> Feil ved lagring </p>';
+            $feilmelding='Feil ved lagring!';
+            loggFeil($feilmelding);
+            echo "$feilmelding<br>";
         }
         else {
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader ==0){
-                echo '<p>Feil ved lagring!</p>';
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
             }
         }
     }
+    
     public function hentTilskuerSineOvelser($id){
         $sql = "SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerId='$id';";
         $res = $this->db->query($sql);
         $ovelser = array();
         if(!$res){
-            echo '<p>Fant ingen øvelse på denne tilskuer!</p>';
+            $feilmelding='Fant ingen øvelse på denne tilskuer!';
+            loggFeil($feilmelding);
+            echo "$feilmelding<br>";
         }
         else{
             $ovelseDb=new ovelse_db($this->db);
@@ -72,17 +86,22 @@ class tilskuer_db{
         }
         return $ovelser;
     }
+    
     public function lagreOvelse($TilskuerId, $OvelseId){
         $sql = "INSERT INTO `ovelsetilskuer` (TilskuerId, OvelseId)
            VALUES('$TilskuerId', '$OvelseId');";
         $res = $this->db->query($sql);
         if(!$res){
-            echo '<p>Feil ved lagring1!</p>';
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
         }
         else{
             $antall_rader = $this->db->affected_rows;
             if ($antall_rader==0){
-                echo "Feil ved lagring";
+                $feilmelding='Feil ved lagring!';
+                loggFeil($feilmelding);
+                echo "$feilmelding<br>";
             }
         }
     }
