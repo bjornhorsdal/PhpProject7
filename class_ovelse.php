@@ -21,7 +21,7 @@ Class Ovelse{
     }
 
     function skrivUtOverskrift(){
-        echo "$this->navn. $this->kjonn. <br>";
+        echo "$this->navn $this->kjonn <br>";
     }
 }
         

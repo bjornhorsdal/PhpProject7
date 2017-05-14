@@ -8,19 +8,19 @@ include_once "class_utover_db.php";
 
 $db=new mysqli('localhost', 'root', '', 'ski');
 $utoverDb=new utover_db($db);
-if(isset($_REQUEST['registrer'])){
-	$navn = $_REQUEST['navn'];
-	$kjonn = $_REQUEST['kjonn'];
-	$nationalitet = $_REQUEST['nationalitet'];
+if(isset($_POST['registrer'])){
+	$navn = $_POST['navn'];
+	$kjonn = $_POST['kjonn'];
+	$nationalitet = $_POST['nationalitet'];
 	$utover=new Utover(0, $navn, $kjonn, $nationalitet);
         $utoverDb->lagre($utover);        
 }
 
-if(isset($_REQUEST['Endre'])){
-    $id = $_REQUEST['id'];
-    $navn = $_REQUEST['navn'];
-    $kjonn = $_REQUEST['kjonn'];
-    $nationalitet = $_REQUEST['nationalitet'];
+if(isset($_POST['Endre'])){
+    $id = $_POST['id'];
+    $navn = $_POST['navn'];
+    $kjonn = $_POST['kjonn'];
+    $nationalitet = $_POST['nationalitet'];
     $utover=new Utover($id, $navn, $kjonn, $nationalitet);
     $utoverDb->endre($utover);
 }

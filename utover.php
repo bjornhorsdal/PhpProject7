@@ -15,7 +15,7 @@ $utover->skrivUt();
 ?>
 
 <br>
-<form action="regUtover.php" method="GET">
+<form action="regUtover.php" method="POST">
 
 <?php
 echo'<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
@@ -25,10 +25,10 @@ if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){
 echo "</form><br>";
 
 
-if(isset($_REQUEST['Registrer']))
+if(isset($_POST['Registrer']))
 {
-    $utoverId = $_REQUEST['id'];
-    $ovelseId = $_REQUEST['OvelseId'];
+    $utoverId = $_POST['id'];
+    $ovelseId = $_POST['OvelseId'];
     $utoverDb->lagreOvelse($utoverId, $ovelseId);
 }
 
@@ -42,7 +42,7 @@ echo "<br>";
 
 if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){  
     echo '<form action="utover.php">';
-    echo '<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
+    echo '<input type="hidden" value="'.$_POST["id"].'" name="id"/>';
     echo lagListe();
     echo '<input type="submit" value="Registrer" name="Registrer"/></form>';    
 }    

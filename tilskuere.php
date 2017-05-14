@@ -9,11 +9,11 @@ echo "<br>";
 
 $db=new mysqli('localhost', 'root', '', 'ski');
 $tilskuerDb=new tilskuer_db($db);
-if(isset($_REQUEST['registrer']))
+if(isset($_POST['registrer']))
 {
-	$navn = $_REQUEST['navn'];
-	$bosted = $_REQUEST['bosted'];
-	$nationalitet = $_REQUEST['nationalitet'];
+	$navn = $_POST['navn'];
+	$bosted = $_POST['bosted'];
+	$nationalitet = $_POST['nationalitet'];
         $tilskuer=new Tilskuer(0, $navn, $bosted, $nationalitet);
         $tilskuerDb->lagre($tilskuer);
 	

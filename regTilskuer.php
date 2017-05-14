@@ -4,7 +4,7 @@ echo "<br>";
 ?>
 <h2>Registrering av tilskuer</h2>
         
-<form action="tilskuere.php" method="Get">
+<form action="tilskuere.php" method="POST">
     <table>
         <tr>
             <td>Navn</td><td><input type="text" name="navn"/></td>

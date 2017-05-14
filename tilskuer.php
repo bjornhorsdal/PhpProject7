@@ -11,10 +11,10 @@ echo "<br>";
 $db=new mysqli('localhost', 'root', '', 'ski');
 $tilskuerDb=new tilskuer_db($db);
 
-if(isset($_REQUEST['Registrer']))
+if(isset($_POST['Registrer']))
 {
-    $tilskuerId = $_REQUEST['id'];
-    $ovelseId = $_REQUEST['OvelseId'];
+    $tilskuerId = $_POST['id'];
+    $ovelseId = $_POST['OvelseId'];
     $tilskuerDb->lagreOvelse($tilskuerId, $ovelseId);
 }
 

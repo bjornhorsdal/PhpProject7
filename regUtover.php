@@ -2,12 +2,12 @@
 include_once 'meny.php';
 echo "<br>";
 include_once 'class_utover_db.php';
-if(isset($_REQUEST['Endre'])){
+if(isset($_POST['Endre'])){
     $db=new mysqli('localhost', 'root', '', 'ski');
     $utoverDb=new utover_db($db);
-    $utover=$utoverDb->hentUtover($_REQUEST["id"]);
+    $utover=$utoverDb->hentUtover($_POST["id"]);
     echo "<h2>Endring av utøver</h2>";
-    echo '<form action="utovere.php" method="Get">';
+    echo '<form action="utovere.php" method="POST">';
     echo "<table>";
     echo "<tr><td>Navn</td><td><input type='text' name='navn' value='$utover->navn'/></td></tr>";
     echo "<tr><td>Kjønn</td><td><input type='text' name='kjonn' value='$utover->kjonn'/></td></tr>";
@@ -21,7 +21,7 @@ if(isset($_REQUEST['Endre'])){
 ?>
 <h2>Registrering av ny utøver</h2>
        
-<form action="utovere.php" method="Get">
+<form action="utovere.php" method="POST">
     <table>
         <tr>
             <td>Navn</td><td><input type="text" name="navn"/></td>

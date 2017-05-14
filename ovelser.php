@@ -9,19 +9,19 @@ include_once "class_ovelse_db.php";
 $db=new mysqli('localhost', 'root', '', 'ski');
 $ovelseDb=new ovelse_db($db);
 
-if(isset($_REQUEST['Registrer'])){
-    $navn = $_REQUEST['navn'];
-    $kjonn = $_REQUEST['kjonn'];
-    $tidspunkt = $_REQUEST['tidspunkt'];
+if(isset($_POST['Registrer'])){
+    $navn = $_POST['navn'];
+    $kjonn = $_POST['kjonn'];
+    $tidspunkt = $_POST['tidspunkt'];
     $ovelse=new Ovelse(0, $navn, $kjonn, $tidspunkt);
     $ovelseDb->lagre($ovelse);
 }
 
-if(isset($_REQUEST['Endre'])){
-    $id = $_REQUEST['id'];
-    $navn = $_REQUEST['navn'];
-    $kjonn = $_REQUEST['kjonn'];
-    $tidspunkt = $_REQUEST['tidspunkt'];
+if(isset($_POST['Endre'])){
+    $id = $_POST['id'];
+    $navn = $_POST['navn'];
+    $kjonn = $_POST['kjonn'];
+    $tidspunkt = $_POST['tidspunkt'];
     $ovelse=new Ovelse($id, $navn, $kjonn, $tidspunkt);
     $ovelseDb->endre($ovelse);
 }

@@ -94,8 +94,6 @@ class ovelse_db{
     }
     public function endre($ovelse) {
         $sql = "UPDATE ovelse SET OvelseNavn='$ovelse->navn', OvelseKjonn='$ovelse->kjonn', OvelseTidspunkt='$ovelse->tidspunkt' WHERE OvelseId='$ovelse->id';";
-        echo "$sql";
-        echo "<br>";
         $res = $this->db->query($sql);
         if (!$res) {
             echo '<p>Feil ved oppdatering!</p>';

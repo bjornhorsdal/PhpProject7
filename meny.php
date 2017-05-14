@@ -6,7 +6,7 @@ echo '<td><a href="ovelser.php">Øvelser</a></td>';
 echo '<td><a href="tilskuere.php">Tilskuere</a></td>';
 echo '<td><a href="utovere.php">Utøvere</a></td>';
 if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){
-    echo '<form action="login.php" method="GET">';
+    echo '<form action="login.php" method="POST">';
     echo '<td><input type="submit" value="Logg ut" name="loginnut"/></td>';
     echo '</form>';
 }

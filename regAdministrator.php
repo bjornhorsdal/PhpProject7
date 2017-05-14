@@ -2,12 +2,12 @@
 include_once 'meny.php';
 echo "<br>";
 $db=new mysqli('localhost', 'root', '', 'ski');
-if(isset($_REQUEST['registrer']))
+if(isset($_POST['registrer']))
 {
-    $navn = $_REQUEST['navn'];
-    $epost = $_REQUEST['epost'];
-    $brukerNavn = $_REQUEST['brukernavn'];
-    $passord = $_REQUEST['passord'];
+    $navn = $_POST['navn'];
+    $epost = $_POST['epost'];
+    $brukerNavn = $_POST['brukernavn'];
+    $passord = $_POST['passord'];
 
     $sql = "INSERT INTO administrator(AdministratorNavn, AdministratorEpost, AdministratorBrukerNavn, AdministratorPassordHash)
        VALUES('$navn', '$epost', '$brukerNavn', PASSWORD('$passord'))";
@@ -29,7 +29,7 @@ if(isset($_REQUEST['registrer']))
 
 <h2>Registrering av ny administrator</h2>
        
-<form action="regAdministrator.php" method="Get">
+<form action="regAdministrator.php" method="POST">
     <table>
         <tr>
             <td>Navn</td><td><input type="text" name="navn"/></td>

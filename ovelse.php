@@ -15,7 +15,7 @@ $ovelse->skrivUt();
 ?>
 
 <br>
-<form action="regOvelse.php" method="GET">
+<form action="regOvelse.php" method="POST">
 <?php
 echo'<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
 if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){
