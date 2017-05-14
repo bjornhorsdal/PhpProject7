@@ -11,13 +11,19 @@ $db=new mysqli('localhost', 'root', '', 'ski');
 $tilskuerDb=new tilskuer_db($db);
 if(isset($_POST['registrer']))
 {
-	$navn = $db->real_escape_string($_POST['navn']);
-	$bosted = $db->real_escape_string($_POST['bosted']);
-        $telefon = $db->real_escape_string($_POST['telefon']);
-        $epost = $db->real_escape_string($_POST['epost']);
-	$nationalitet = $db->real_escape_string($_POST['nationalitet']);
+    $navn = $db->real_escape_string($_POST['navn']);
+    $bosted = $db->real_escape_string($_POST['bosted']);
+    $telefon = $db->real_escape_string($_POST['telefon']);
+    $epost = $db->real_escape_string($_POST['epost']);
+    $nationalitet = $db->real_escape_string($_POST['nationalitet']);
+    if (!preg_match('/^[\d]+$/',$telefon) || !preg_match('/@/', $epost) || 
+        !preg_match('/./', $navn) ){
+        echo "Du må oppgi gyldig navn, epost og telefonnummer!<br><br>";
+    }
+    else {
         $tilskuer=new Tilskuer(0, $navn, $bosted, $telefon, $epost, $nationalitet);
         $tilskuerDb->lagre($tilskuer);
+    }
 }
    
 $tilskuere = $tilskuerDb->hentAlle();

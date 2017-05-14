@@ -13,8 +13,13 @@ if(isset($_POST['Registrer'])){
     $navn = $db->real_escape_string($_POST['navn']);
     $kjonn = $db->real_escape_string($_POST['kjonn']);
     $tidspunkt = $db->real_escape_string($_POST['tidspunkt']);
-    $ovelse=new Ovelse(0, $navn, $kjonn, $tidspunkt);
-    $ovelseDb->lagre($ovelse);
+    if (!preg_match('/./', $navn) ){
+        echo "Du må oppgi gyldig navn på øvelse!<br><br>";
+    }
+    else {
+        $ovelse=new Ovelse(0, $navn, $kjonn, $tidspunkt);
+        $ovelseDb->lagre($ovelse);
+    }
 }
 
 if(isset($_POST['Endre'])){
@@ -22,8 +27,13 @@ if(isset($_POST['Endre'])){
     $navn = $db->real_escape_string($_POST['navn']);
     $kjonn = $db->real_escape_string($_POST['kjonn']);
     $tidspunkt = $db->real_escape_string($_POST['tidspunkt']);
-    $ovelse=new Ovelse($id, $navn, $kjonn, $tidspunkt);
-    $ovelseDb->endre($ovelse);
+    if (!preg_match('/./', $navn) ){
+        echo "Du må oppgi gyldig navn på øvelse!<br><br>";
+    }
+    else {
+        $ovelse=new Ovelse($id, $navn, $kjonn, $tidspunkt);
+        $ovelseDb->endre($ovelse);
+    }
 }
 
 $ovelser = $ovelseDb->hentAlle();

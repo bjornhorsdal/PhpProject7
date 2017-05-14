@@ -8,18 +8,24 @@ if(isset($_POST['registrer']))
     $epost = $db->real_escape_string($_POST['epost']);
     $brukerNavn = $db->real_escape_string($_POST['brukernavn']);
     $passord = $db->real_escape_string($_POST['passord']);
-    $hashPassord = password_hash($passord, PASSWORD_BCRYPT);
-
-    $sql = "INSERT INTO administrator(AdministratorNavn, AdministratorEpost, AdministratorBrukerNavn, AdministratorPassordHash)
-       VALUES('$navn', '$epost', '$brukerNavn', '$hashPassord');";
-    $res = $db->query($sql);
-    if (!$res){
-        echo '<p> Feil ved lagring!</p>';
+    if (!preg_match('/./', $brukerNavn) || !preg_match('/./', $passord)){
+        echo "Du må oppgi gyldig brukernavn og passord!<br><br>";
     }
     else {
-        $antall_rader = $db->affected_rows;
-        if ($antall_rader ==0){
-            echo '<p>Feil ved lagring!</p>';
+        $hashPassord = password_hash($passord, PASSWORD_BCRYPT);
+
+        $sql = "INSERT INTO administrator(AdministratorNavn, AdministratorEpost, AdministratorBrukerNavn, AdministratorPassordHash)
+           VALUES('$navn', '$epost', '$brukerNavn', '$hashPassord');";
+        $res = $db->query($sql);
+        if (!$res){
+            echo '<p> Feil ved lagring!</p>';
+            echo "$db->error<br>";
+        }
+        else {
+            $antall_rader = $db->affected_rows;
+            if ($antall_rader ==0){
+                echo '<p>Feil ved lagring!</p>';
+            }
         }
     }
 }

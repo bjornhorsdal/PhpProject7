@@ -9,11 +9,16 @@ include_once "class_utover_db.php";
 $db=new mysqli('localhost', 'root', '', 'ski');
 $utoverDb=new utover_db($db);
 if(isset($_POST['registrer'])){
-	$navn = $db->real_escape_string($_POST['navn']);
-	$kjonn = $db->real_escape_string($_POST['kjonn']);
-	$nationalitet = $db->real_escape_string($_POST['nationalitet']);
-	$utover=new Utover(0, $navn, $kjonn, $nationalitet);
-        $utoverDb->lagre($utover);        
+    $navn = $db->real_escape_string($_POST['navn']);
+    $kjonn = $db->real_escape_string($_POST['kjonn']);
+    $nationalitet = $db->real_escape_string($_POST['nationalitet']);
+    if (!preg_match('/./', $navn) ){
+        echo "Du må oppgi gyldig navn på utøver!<br><br>";
+    }
+    else {
+        $utover=new Utover(0, $navn, $kjonn, $nationalitet);
+        $utoverDb->lagre($utover);   
+    }
 }
 
 if(isset($_POST['Endre'])){
@@ -21,8 +26,13 @@ if(isset($_POST['Endre'])){
     $navn = $db->real_escape_string($_POST['navn']);
     $kjonn = $db->real_escape_string($_POST['kjonn']);
     $nationalitet = $db->real_escape_string($_POST['nationalitet']);
-    $utover=new Utover($id, $navn, $kjonn, $nationalitet);
-    $utoverDb->endre($utover);
+    if (!preg_match('/./', $navn) ){
+        echo "Du må oppgi gyldig navn på utøver!<br><br>";
+    }
+    else {
+        $utover=new Utover($id, $navn, $kjonn, $nationalitet);
+        $utoverDb->endre($utover);
+    }
 }
             
 $utovere = $utoverDb->hentAlle();
