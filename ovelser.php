@@ -10,18 +10,18 @@ $db=new mysqli('localhost', 'root', '', 'ski');
 $ovelseDb=new ovelse_db($db);
 
 if(isset($_POST['Registrer'])){
-    $navn = $_POST['navn'];
-    $kjonn = $_POST['kjonn'];
-    $tidspunkt = $_POST['tidspunkt'];
+    $navn = $db->real_escape_string($_POST['navn']);
+    $kjonn = $db->real_escape_string($_POST['kjonn']);
+    $tidspunkt = $db->real_escape_string($_POST['tidspunkt']);
     $ovelse=new Ovelse(0, $navn, $kjonn, $tidspunkt);
     $ovelseDb->lagre($ovelse);
 }
 
 if(isset($_POST['Endre'])){
-    $id = $_POST['id'];
-    $navn = $_POST['navn'];
-    $kjonn = $_POST['kjonn'];
-    $tidspunkt = $_POST['tidspunkt'];
+    $id = $db->real_escape_string($_POST['id']);
+    $navn = $db->real_escape_string($_POST['navn']);
+    $kjonn = $db->real_escape_string($_POST['kjonn']);
+    $tidspunkt = $db->real_escape_string($_POST['tidspunkt']);
     $ovelse=new Ovelse($id, $navn, $kjonn, $tidspunkt);
     $ovelseDb->endre($ovelse);
 }

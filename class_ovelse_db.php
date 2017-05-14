@@ -57,7 +57,7 @@ class ovelse_db{
         }
     }
     public function hentOvelseTilskuere($id) {
-        $sql = 'SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseId='.$id.";";
+        $sql = "SELECT TilskuerId  FROM `ovelsetilskuer` WHERE OvelseId='$id';";
         $res = $this->db->query($sql);
         $tilskuere = array();
         if(!$res){
@@ -75,7 +75,7 @@ class ovelse_db{
         return $tilskuere;
     }
     public function hentOvelseUtovere($id) {
-        $sql = 'SELECT UtoverId  FROM `ovelseutover` WHERE OvelseId='.$id.";";
+        $sql = "SELECT UtoverId  FROM `ovelseutover` WHERE OvelseId='$id';";
         $res = $this->db->query($sql);
         $utovere = array();
         if(!$res){
@@ -93,7 +93,8 @@ class ovelse_db{
         return $utovere;
     }
     public function endre($ovelse) {
-        $sql = "UPDATE ovelse SET OvelseNavn='$ovelse->navn', OvelseKjonn='$ovelse->kjonn', OvelseTidspunkt='$ovelse->tidspunkt' WHERE OvelseId='$ovelse->id';";
+        $sql = "UPDATE ovelse SET OvelseNavn='$ovelse->navn', OvelseKjonn='$ovelse->kjonn', "
+                . "OvelseTidspunkt='$ovelse->tidspunkt' WHERE OvelseId='$ovelse->id';";
         $res = $this->db->query($sql);
         if (!$res) {
             echo '<p>Feil ved oppdatering!</p>';

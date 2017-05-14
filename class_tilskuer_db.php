@@ -25,7 +25,7 @@ class tilskuer_db{
     }
     
     public function hentTilskuer($id){
-        $sql = 'SELECT * FROM tilskuer WHERE TilskuerId='.$id.";";
+        $sql = "SELECT * FROM tilskuer WHERE TilskuerId='$id';";
         $res = $this->db->query($sql);
         if(!$res){
             echo '<p>Fant ingen tilskuer!</p>';
@@ -39,7 +39,7 @@ class tilskuer_db{
     
     public function lagre($tilskuer) {
         $sql = "INSERT INTO tilskuer(TilskuerNavn, TilskuerBosted, TilskuerNationalitet)
-           VALUES('$tilskuer->navn', '$tilskuer->bosted', '$tilskuer->nationalitet')";
+           VALUES('$tilskuer->navn', '$tilskuer->bosted', '$tilskuer->nationalitet');";
         $res = $this->db->query($sql);
         if (!$res){
            echo '<p> Feil ved lagring </p>';
@@ -52,7 +52,7 @@ class tilskuer_db{
         }
     }
     public function hentTilskuerSineOvelser($id){
-        $sql = 'SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerId='.$id.";";
+        $sql = "SELECT OvelseId  FROM `ovelsetilskuer` WHERE TilskuerId='$id';";
         $res = $this->db->query($sql);
         $ovelser = array();
         if(!$res){

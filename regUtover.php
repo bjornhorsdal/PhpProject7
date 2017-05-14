@@ -5,7 +5,7 @@ include_once 'class_utover_db.php';
 if(isset($_POST['Endre'])){
     $db=new mysqli('localhost', 'root', '', 'ski');
     $utoverDb=new utover_db($db);
-    $utover=$utoverDb->hentUtover($_POST["id"]);
+    $utover=$utoverDb->hentUtover($db->real_escape_string($_POST["id"]));
     echo "<h2>Endring av utøver</h2>";
     echo '<form action="utovere.php" method="POST">';
     echo "<table>";

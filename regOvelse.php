@@ -6,7 +6,7 @@ include_once 'class_ovelse_db.php';
 if(isset($_POST['Endre'])){
     $db=new mysqli('localhost', 'root', '', 'ski');
     $ovelseDb=new ovelse_db($db);
-    $ovelse=$ovelseDb->hentOvelse($_POST["id"]);
+    $ovelse=$ovelseDb->hentOvelse($db->real_escape_string($_POST["id"]));
     echo "<h2>Endring av øvelse</h2>";
     echo '<form action="ovelser.php" method="POST">';
     echo "<table>";

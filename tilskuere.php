@@ -11,9 +11,9 @@ $db=new mysqli('localhost', 'root', '', 'ski');
 $tilskuerDb=new tilskuer_db($db);
 if(isset($_POST['registrer']))
 {
-	$navn = $_POST['navn'];
-	$bosted = $_POST['bosted'];
-	$nationalitet = $_POST['nationalitet'];
+	$navn = $db->real_escape_string($_POST['navn']);
+	$bosted = $db->real_escape_string($_POST['bosted']);
+	$nationalitet = $db->real_escape_string($_POST['nationalitet']);
         $tilskuer=new Tilskuer(0, $navn, $bosted, $nationalitet);
         $tilskuerDb->lagre($tilskuer);
 	

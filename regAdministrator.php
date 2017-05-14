@@ -4,10 +4,10 @@ echo "<br>";
 $db=new mysqli('localhost', 'root', '', 'ski');
 if(isset($_POST['registrer']))
 {
-    $navn = $_POST['navn'];
-    $epost = $_POST['epost'];
-    $brukerNavn = $_POST['brukernavn'];
-    $passord = $_POST['passord'];
+    $navn = $db->real_escape_string($_POST['navn']);
+    $epost = $db->real_escape_string($_POST['epost']);
+    $brukerNavn = $db->real_escape_string($_POST['brukernavn']);
+    $passord = $db->real_escape_string($_POST['passord']);
     $hashPassord = password_hash($passord, PASSWORD_BCRYPT);
 
     $sql = "INSERT INTO administrator(AdministratorNavn, AdministratorEpost, AdministratorBrukerNavn, AdministratorPassordHash)

@@ -25,7 +25,7 @@ class utover_db{
     }
     
     public function hentUtover($id){
-        $sql = 'SELECT * FROM utover WHERE UtoverId='.$id.";";
+        $sql = "SELECT * FROM utover WHERE UtoverId='$id';";
         $res = $this->db->query($sql);
         if(!$res){
             echo '<p>Fant ingen utøver!</p>';
@@ -53,7 +53,7 @@ class utover_db{
     }
     
     public function hentUtoverSineOvelser($id){
-    $sql = 'SELECT OvelseId  FROM `ovelseutover` WHERE UtoverID='.$id.";";
+    $sql = "SELECT OvelseId  FROM `ovelseutover` WHERE UtoverID='$id';";
         $res = $this->db->query($sql);
         $ovelser = array();
         if(!$res){

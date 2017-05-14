@@ -13,8 +13,8 @@ $tilskuerDb=new tilskuer_db($db);
 
 if(isset($_POST['Registrer']))
 {
-    $tilskuerId = $_POST['id'];
-    $ovelseId = $_POST['OvelseId'];
+    $tilskuerId = $db->real_escape_string($_POST['id']);
+    $ovelseId = $db->real_escape_string($_POST['OvelseId']);
     $tilskuerDb->lagreOvelse($tilskuerId, $ovelseId);
 }
 
@@ -32,7 +32,7 @@ echo "<br>";
 
 ?>
 
-<form action="tilskuer.php">
+<form action="tilskuer.php" method="POST">
     
 
 <?php

@@ -27,8 +27,8 @@ echo "</form><br>";
 
 if(isset($_POST['Registrer']))
 {
-    $utoverId = $_POST['id'];
-    $ovelseId = $_POST['OvelseId'];
+    $utoverId = $db->real_escape_string($_POST['id']);
+    $ovelseId = $db->real_escape_string($_POST['OvelseId']);
     $utoverDb->lagreOvelse($utoverId, $ovelseId);
 }
 
@@ -41,8 +41,8 @@ foreach ($ovelser as $ovelse){
 echo "<br>";
 
 if (in_array('admin', $_SESSION) && $_SESSION['admin']==TRUE){  
-    echo '<form action="utover.php">';
-    echo '<input type="hidden" value="'.$_POST["id"].'" name="id"/>';
+    echo '<form action="utover.php" method="POST">';
+    echo '<input type="hidden" value="'.$_REQUEST["id"].'" name="id"/>';
     echo lagListe();
     echo '<input type="submit" value="Registrer" name="Registrer"/></form>';    
 }    
