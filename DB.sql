@@ -9,6 +9,8 @@ CREATE TABLE Tilskuer (
 TilskuerId int not null auto_increment,
 TilskuerNavn varchar (255),
 TilskuerBosted varchar(255),
+TilskuerTelefon varchar (16),
+TilskuerEpost varchar (255),
 TilskuerNationalitet varchar (255), primary key(TilskuerId)
 );
 

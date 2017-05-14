@@ -13,10 +13,11 @@ if(isset($_POST['registrer']))
 {
 	$navn = $db->real_escape_string($_POST['navn']);
 	$bosted = $db->real_escape_string($_POST['bosted']);
+        $telefon = $db->real_escape_string($_POST['telefon']);
+        $epost = $db->real_escape_string($_POST['epost']);
 	$nationalitet = $db->real_escape_string($_POST['nationalitet']);
-        $tilskuer=new Tilskuer(0, $navn, $bosted, $nationalitet);
+        $tilskuer=new Tilskuer(0, $navn, $bosted, $telefon, $epost, $nationalitet);
         $tilskuerDb->lagre($tilskuer);
-	
 }
    
 $tilskuere = $tilskuerDb->hentAlle();

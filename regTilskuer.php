@@ -13,6 +13,12 @@ echo "<br>";
             <td>Bosted</td><td><input type="text" name="bosted"/></td>
         </tr>
         <tr>
+            <td>Telefon</td><td><input type="text" name="telefon"/></td>
+        </tr>
+        <tr>
+            <td>Epost</td><td><input type="text" name="epost"/></td>
+        </tr>
+        <tr>
             <td>Nationalitet</td><td><input type="text" name="nationalitet"/></td>
         </tr>
         <tr>

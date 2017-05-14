@@ -17,7 +17,8 @@ class tilskuer_db{
             $antall_rader = $this->db->affected_rows;
             for ($i=0; $i < $antall_rader; $i++){
                 $rad = $res->fetch_object();
-                $tilskuer= new tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, $rad->TilskuerNationalitet);
+                $tilskuer= new tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, 
+                        $rad->TilskuerTelefon, $rad->TilskuerEpost, $rad->TilskuerNationalitet);
                 $tilskuere[]=$tilskuer;
             }   
         }
@@ -32,14 +33,16 @@ class tilskuer_db{
         }
         else{
             $rad = $res->fetch_object();
-            $tilskuer= new Tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, $rad->TilskuerNationalitet);
+            $tilskuer= new Tilskuer($rad->TilskuerId, $rad->TilskuerNavn, $rad->TilskuerBosted, 
+                    $rad->TilskuerTelefon, $rad->TilskuerEpost,$rad->TilskuerNationalitet);
         }
         return $tilskuer;
     }
     
     public function lagre($tilskuer) {
-        $sql = "INSERT INTO tilskuer(TilskuerNavn, TilskuerBosted, TilskuerNationalitet)
-           VALUES('$tilskuer->navn', '$tilskuer->bosted', '$tilskuer->nationalitet');";
+        $sql = "INSERT INTO tilskuer(TilskuerNavn, TilskuerBosted, TilskuerTelefon, TilskuerEpost, TilskuerNationalitet)
+           VALUES('$tilskuer->navn', '$tilskuer->bosted', '$tilskuer->telefon', "
+                . "'$tilskuer->epost','$tilskuer->nationalitet');";
         $res = $this->db->query($sql);
         if (!$res){
            echo '<p> Feil ved lagring </p>';
