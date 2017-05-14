@@ -15,8 +15,8 @@ function brukerErAdministrator($brukerNavn, $passord){
 
 function hentAdministrator($brukerNavn, $passord) {
     $db=new mysqli('localhost', 'root', '', 'ski');
-    $administrator="";    
-    $sql = "SELECT * FROM administrator WHERE AdministratorBrukerNavn='$brukerNavn' AND AdministratorPassordHash=PASSWORD('$passord');";
+    $administrator=""; 
+    $sql = "SELECT * FROM administrator WHERE AdministratorBrukerNavn='$brukerNavn' ";
     $res = $db->query($sql);
     if(!$res){
       echo "<p>Feil i login!</p>";
@@ -27,7 +27,12 @@ function hentAdministrator($brukerNavn, $passord) {
         $antall_rader = $db->affected_rows;
         if($antall_rader>0){
             $rad = $res->fetch_object();
-            $administrator=$rad->AdministratorNavn;
+            if(password_verify($passord, $rad->AdministratorPassordHash)){
+                $administrator=$rad->AdministratorNavn;
+            }
+            else {
+                echo "Feil brukernavn eller passord!<br>";
+            }
         }
     }
     return $administrator;

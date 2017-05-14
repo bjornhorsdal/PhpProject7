@@ -8,9 +8,10 @@ if(isset($_POST['registrer']))
     $epost = $_POST['epost'];
     $brukerNavn = $_POST['brukernavn'];
     $passord = $_POST['passord'];
+    $hashPassord = password_hash($passord, PASSWORD_BCRYPT);
 
     $sql = "INSERT INTO administrator(AdministratorNavn, AdministratorEpost, AdministratorBrukerNavn, AdministratorPassordHash)
-       VALUES('$navn', '$epost', '$brukerNavn', PASSWORD('$passord'))";
+       VALUES('$navn', '$epost', '$brukerNavn', '$hashPassord');";
     $res = $db->query($sql);
     if (!$res){
         echo '<p> Feil ved lagring!</p>';
