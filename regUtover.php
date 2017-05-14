@@ -1,3 +1,6 @@
+<html><head><title>Registrering av utøver</title><script src ="validering.js"></script></head>
+    <body
+
 <?php
 include_once 'meny.php';
 echo "<br>";
@@ -7,9 +10,9 @@ if(isset($_POST['Endre'])){
     $utoverDb=new utover_db($db);
     $utover=$utoverDb->hentUtover($db->real_escape_string($_POST["id"]));
     echo "<h2>Endring av utøver</h2>";
-    echo '<form action="utovere.php" method="POST">';
+    echo '<form action="utovere.php" method="POST" onsubmit="return valider_navn()">';
     echo "<table>";
-    echo "<tr><td>Navn</td><td><input type='text' name='navn' value='$utover->navn'/></td></tr>";
+    echo "<tr><td>Navn</td><td><input type='text' name='navn' value='$utover->navn' id='navn'/></td></tr>";
     echo "<tr><td>Kjønn</td><td><input type='text' name='kjonn' value='$utover->kjonn'/></td></tr>";
     echo "<tr><td>Nationalitet</td><td><input type='text' name='nationalitet' value='$utover->nationalitet'/></td></tr>";
     echo "<tr><td><input type='hidden' value='$utover->id' name='id'/></td></tr>";
@@ -21,10 +24,10 @@ if(isset($_POST['Endre'])){
 ?>
 <h2>Registrering av ny utøver</h2>
        
-<form action="utovere.php" method="POST">
+<form action="utovere.php" method="POST" onsubmit="return valider_navn()">
     <table>
         <tr>
-            <td>Navn</td><td><input type="text" name="navn"/></td>
+            <td>Navn</td><td><input type="text" name="navn" id="navn"/></td>
         </tr>
         <tr>
             <td>Kjønn</td><td><input type="text" name="kjonn"/></td>
