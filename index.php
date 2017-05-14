@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <title></title>
     </head>
-    <body>
+    <body><div class="container">
         <?php
         echo "<h2>Prosjektoppgave 2017 - Webprogrammering PHP</h2>";
         echo "<br>";
@@ -21,5 +17,5 @@ and open the template in the editor.
         <br>
         <br>
         <a href="utovere.php">Utøvere</a>
-    </body>
+        </div></body>
 </html>

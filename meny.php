@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo '<tr><table>';
+echo '<table class = "table"><tr>';
 echo '<td><a href="index.php">Forside</a></td>';
 echo '<td><a href="ovelser.php">Øvelser</a></td>';
 echo '<td><a href="tilskuere.php">Tilskuere</a></td>';

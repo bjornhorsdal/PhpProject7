@@ -1,5 +1,7 @@
-<html><head><title>Registrering av tilskuer</title><script src ="validering.js"></script></head>
-    <body
+<html><head><title>Registrering av tilskuer</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src ="validering.js"></script></head>
+    <body><div class="container">
 
 <?php
 include_once 'meny.php';
@@ -29,7 +31,7 @@ echo "<br>";
         </tr>
     </table>
 </form>
-    </body>
+    </div></body>
 </html>
 
             
